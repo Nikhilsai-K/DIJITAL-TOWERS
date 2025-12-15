@@ -16,10 +16,10 @@ export const siteConfig = {
 };
 
 export const stats = [
-  { value: "150+", label: "Luxury Properties", suffix: "" },
-  { value: "98", label: "Client Satisfaction", suffix: "%" },
-  { value: "50M+", label: "Property Value Sold", suffix: "¥" },
-  { value: "15", label: "Design Awards", suffix: "" }
+  { value: "150+", label: "Luxury Properties" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "¥50M+", label: "Property Value Sold" },
+  { value: "15", label: "Design Awards" }
 ];
 
 export const services = [
@@ -114,26 +114,22 @@ export const processSteps = [
   {
     step: 1,
     title: "Discovery & Strategy",
-    description: "We begin with an in-depth consultation to understand your property's unique selling points, target audience, and business objectives.",
-    duration: "1-2 Weeks"
+    description: "We begin with an in-depth consultation to understand your property's unique selling points, target audience, and business objectives."
   },
   {
     step: 2,
     title: "Design & Prototyping",
-    description: "Our designers create stunning visual concepts and interactive prototypes that capture the essence of your luxury property.",
-    duration: "2-3 Weeks"
+    description: "Our designers create stunning visual concepts and interactive prototypes that capture the essence of your luxury property."
   },
   {
     step: 3,
     title: "Development & Integration",
-    description: "We build your website with cutting-edge technology, ensuring fast performance, SEO optimization, and seamless third-party integrations.",
-    duration: "3-4 Weeks"
+    description: "We build your website with cutting-edge technology, ensuring fast performance, SEO optimization, and seamless third-party integrations."
   },
   {
     step: 4,
     title: "Launch & Growth",
-    description: "After thorough testing, we launch your site and provide ongoing support, analytics monitoring, and performance optimization.",
-    duration: "Ongoing"
+    description: "After thorough testing, we launch your site and provide ongoing support, analytics monitoring, and performance optimization."
   }
 ];
 
@@ -245,10 +241,40 @@ export const faqs = [
 ];
 
 export const navItems = [
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" }
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" }
+];
+
+export const teamMembers = [
+  {
+    id: 1,
+    name: "Kenji Matsuda",
+    role: "Founder & CEO",
+    bio: "15+ years in luxury real estate marketing",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"
+  },
+  {
+    id: 2,
+    name: "Sakura Ito",
+    role: "Creative Director",
+    bio: "Award-winning designer from Tokyo Art University",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+  },
+  {
+    id: 3,
+    name: "Hiroshi Tanaka",
+    role: "Lead Developer",
+    bio: "Former Google engineer, web performance expert",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+  },
+  {
+    id: 4,
+    name: "Yumi Nakamura",
+    role: "Marketing Director",
+    bio: "Specialized in luxury brand digital strategy",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+  }
 ];
