@@ -1,280 +1,146 @@
 // Site Content Data
 export const siteConfig = {
-  name: "DIJITAL TOWERS",
-  tagline: "Crafting Digital Masterpieces for Japan's Finest Properties",
-  description: "We create stunning, conversion-focused websites for luxury mansions, towers, and premium apartments across Japan. Transform your prestigious property into a digital masterpiece.",
+  name: "DigiHome",
+  tagline: "Beautiful Websites for Luxury Properties",
+  description: "We create stunning websites for towers, mansions, and apartments. Help your property stand out in the digital age.",
   contact: {
-    email: "hello@dijitaltowers.jp",
+    email: "hello@digihome.jp",
     phone: "+81 3-1234-5678",
-    address: "Roppongi Hills Mori Tower, 52F, Tokyo, Japan"
+    address: "Tokyo, Japan"
   },
   social: {
-    instagram: "https://instagram.com/dijitaltowers",
-    linkedin: "https://linkedin.com/company/dijitaltowers",
-    twitter: "https://twitter.com/dijitaltowers"
+    instagram: "https://instagram.com/digihome",
+    linkedin: "https://linkedin.com/company/digihome",
+    twitter: "https://twitter.com/digihome",
   }
 };
 
 export const stats = [
-  { value: "150+", label: "Luxury Properties" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "¥50M+", label: "Property Value Sold" },
-  { value: "15", label: "Design Awards" }
+  { value: "3", label: "Projects Completed" },
+  { value: "100%", label: "Client Satisfaction" },
+  //   { value: "5", label: "Years Experience" },
 ];
 
 export const services = [
   {
     id: 1,
-    title: "Luxury Property Websites",
-    description: "Bespoke websites that capture the essence of prestigious properties with stunning visuals, immersive virtual tours, and seamless user experiences.",
+    title: "Tower & Apartment Websites",
+    description: "Beautiful, modern websites for residential towers and apartment complexes. Showcase your units, amenities, and location.",
     icon: "Building2",
-    features: ["Custom Design", "Virtual Tours", "HD Galleries", "Responsive Design"]
+    features: ["Unit Gallery", "Floor Plans", "Location Map", "Contact Forms"]
   },
   {
     id: 2,
-    title: "Tower & High-Rise Solutions",
-    description: "Specialized digital solutions for luxury tower developments featuring interactive floor plans, amenity showcases, and sophisticated booking systems.",
+    title: "Mansion & Villa Websites",
+    description: "Elegant websites for luxury mansions and villas. High-quality imagery, virtual tours, and premium design.",
     icon: "Landmark",
-    features: ["Interactive Floorplans", "Amenity Showcase", "Lead Generation", "CRM Integration"]
+    features: ["Virtual Tours", "Photo Gallery", "Feature Highlights", "Inquiry System"]
   },
-  {
-    id: 3,
-    title: "Real Estate Branding",
-    description: "Complete brand identity packages that elevate your property portfolio with cohesive visual design, marketing materials, and digital presence.",
-    icon: "Palette",
-    features: ["Logo Design", "Brand Guidelines", "Marketing Collateral", "Social Media Assets"]
-  },
-  {
-    id: 4,
-    title: "Performance Marketing",
-    description: "Data-driven digital marketing strategies to attract high-net-worth buyers through targeted campaigns, SEO optimization, and premium ad placements.",
-    icon: "TrendingUp",
-    features: ["SEO Optimization", "PPC Campaigns", "Social Advertising", "Analytics Dashboard"]
-  }
 ];
 
 export const portfolioItems = [
   {
     id: 1,
-    title: "Azabu Residence",
-    category: "Luxury Mansion",
-    location: "Minato-ku, Tokyo",
-    price: "¥2.8 Billion",
+    title: "Azabu Residence Website",
+    category: "Mansion",
+    location: "Tokyo",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-    description: "A stunning 6-bedroom mansion with traditional Japanese garden"
+    description: "A clean, elegant website for a luxury mansion in Azabu"
   },
   {
     id: 2,
     title: "Sky Tower Roppongi",
-    category: "Penthouse",
-    location: "Roppongi, Tokyo",
-    price: "¥1.5 Billion",
+    category: "Tower",
+    location: "Tokyo",
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-    description: "360° panoramic views from Tokyo's premier address"
+    description: "Modern website with interactive floor plans for a high-rise tower"
   },
   {
     id: 3,
     title: "Shibuya Heights",
-    category: "Luxury Apartment",
-    location: "Shibuya, Tokyo",
-    price: "¥890 Million",
+    category: "Apartment",
+    location: "Tokyo",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    description: "Modern luxury living in the heart of Shibuya"
+    description: "Responsive website showcasing premium apartments"
   },
-  {
-    id: 4,
-    title: "Osaka Marina Tower",
-    category: "High-Rise Tower",
-    location: "Osaka Bay",
-    price: "¥1.2 Billion",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-    description: "Waterfront living with yacht marina access"
-  },
-  {
-    id: 5,
-    title: "Kyoto Heritage Villa",
-    category: "Traditional Estate",
-    location: "Higashiyama, Kyoto",
-    price: "¥3.5 Billion",
-    image: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80",
-    description: "Historic property with modern amenities"
-  },
-  {
-    id: 6,
-    title: "Ginza Crystal Tower",
-    category: "Commercial Tower",
-    location: "Ginza, Tokyo",
-    price: "¥5.2 Billion",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
-    description: "Prime commercial space in Tokyo's luxury district"
-  }
 ];
 
 export const processSteps = [
   {
     step: 1,
-    title: "Discovery & Strategy",
-    description: "We begin with an in-depth consultation to understand your property's unique selling points, target audience, and business objectives."
+    title: "Tell Us About Your Property",
+    description: "Share your property details, photos, and what you want to highlight."
   },
   {
     step: 2,
-    title: "Design & Prototyping",
-    description: "Our designers create stunning visual concepts and interactive prototypes that capture the essence of your luxury property."
+    title: "We Design Your Website",
+    description: "Our team creates a beautiful, custom design for your property."
   },
   {
     step: 3,
-    title: "Development & Integration",
-    description: "We build your website with cutting-edge technology, ensuring fast performance, SEO optimization, and seamless third-party integrations."
+    title: "Launch & Support",
+    description: "We launch your website and provide ongoing support."
   },
-  {
-    step: 4,
-    title: "Launch & Growth",
-    description: "After thorough testing, we launch your site and provide ongoing support, analytics monitoring, and performance optimization."
-  }
 ];
 
 export const testimonials = [
   {
     id: 1,
     name: "Takeshi Yamamoto",
-    role: "CEO, Yamamoto Real Estate Group",
-    company: "Yamamoto Real Estate",
-    content: "DIJITAL TOWERS transformed our online presence completely. The website they created for our luxury tower development exceeded all expectations and generated a 300% increase in qualified leads.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+    role: "Property Developer",
+    content: "They created a beautiful website for our tower. We got many more inquiries after launch.",
+    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=200&q=80",
     rating: 5
   },
   {
     id: 2,
     name: "Yuki Tanaka",
-    role: "Director of Sales, Premium Estates",
-    company: "Premium Estates Tokyo",
-    content: "Working with DIJITAL TOWERS was a game-changer. Their understanding of the luxury real estate market and attention to detail resulted in a website that truly represents our brand's prestige.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+    role: "Real Estate Manager",
+    content: "Professional team, great design. Our apartments look amazing online now.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80",
     rating: 5
   },
-  {
-    id: 3,
-    name: "Hiroshi Nakamura",
-    role: "Managing Partner, Nakamura Holdings",
-    company: "Nakamura Holdings",
-    content: "The team's expertise in creating immersive virtual tours and interactive floor plans helped us sell our entire penthouse collection within 3 months. Exceptional work!",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
-    rating: 5
-  }
-];
-
-export const pricingPlans = [
-  {
-    id: 1,
-    name: "Essential",
-    description: "Perfect for individual property listings",
-    price: "¥500,000",
-    period: "per project",
-    features: [
-      "Single Property Website",
-      "Responsive Design",
-      "Photo Gallery (up to 20 images)",
-      "Contact Form Integration",
-      "Basic SEO Setup",
-      "3 Months Support"
-    ],
-    highlighted: false,
-    cta: "Get Started"
-  },
-  {
-    id: 2,
-    name: "Professional",
-    description: "Ideal for luxury developments",
-    price: "¥1,500,000",
-    period: "per project",
-    features: [
-      "Multi-Property Website",
-      "Custom Design & Branding",
-      "Virtual Tour Integration",
-      "Interactive Floor Plans",
-      "Advanced SEO & Analytics",
-      "CRM Integration",
-      "12 Months Support",
-      "Priority Updates"
-    ],
-    highlighted: true,
-    cta: "Most Popular"
-  },
-  {
-    id: 3,
-    name: "Enterprise",
-    description: "Complete digital transformation",
-    price: "Custom",
-    period: "tailored solution",
-    features: [
-      "Unlimited Properties",
-      "Full Brand Identity Package",
-      "360° Virtual Tours",
-      "AI-Powered Lead Scoring",
-      "Multi-language Support",
-      "Dedicated Account Manager",
-      "24/7 Priority Support",
-      "Performance Marketing"
-    ],
-    highlighted: false,
-    cta: "Contact Us"
-  }
-];
-
-export const faqs = [
-  {
-    question: "How long does it take to build a luxury property website?",
-    answer: "Our typical project timeline is 6-10 weeks, depending on the complexity and features required. We ensure every detail is perfect before launch."
-  },
-  {
-    question: "Do you work with international clients?",
-    answer: "Yes! While we specialize in Japanese luxury real estate, we work with clients worldwide who are investing in Japanese properties."
-  },
-  {
-    question: "Can you integrate with our existing CRM system?",
-    answer: "Absolutely. We integrate with all major CRM platforms including Salesforce, HubSpot, and Japanese-specific solutions like Sansan."
-  },
-  {
-    question: "What makes DIJITAL TOWERS different from other agencies?",
-    answer: "We exclusively focus on luxury real estate, combining deep industry expertise with world-class design and technology capabilities."
-  }
 ];
 
 export const navItems = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
+  { label: "Templates", href: "/templates" },
+  { label: "About Us", href: "/portfolio" },
   { label: "Contact", href: "/contact" }
+];
+
+export const faqs = [
+  {
+    question: "How long does it take to build a property website?",
+    answer: "Typically 2-4 weeks depending on the complexity. Simple property sites can be done in 2 weeks, while larger tower websites with many features take 4 weeks."
+  },
+  {
+    question: "What do I need to provide?",
+    answer: "Property photos, floor plans (if available), details about amenities, location information, and your branding preferences. We'll guide you through the process."
+  },
+  {
+    question: "Can you update the website after it's built?",
+    answer: "Yes, we offer ongoing support and maintenance. You can also make simple updates yourself through our easy-to-use content management system."
+  },
+  {
+    question: "Do you handle domain and hosting?",
+    answer: "Yes, we can set up your domain name and hosting. Everything will be ready for you when the website launches."
+  },
 ];
 
 export const teamMembers = [
   {
     id: 1,
     name: "Kenji Matsuda",
-    role: "Founder & CEO",
-    bio: "15+ years in luxury real estate marketing",
+    role: "Founder",
+    bio: "Web design expert for luxury properties",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"
   },
   {
     id: 2,
     name: "Sakura Ito",
-    role: "Creative Director",
-    bio: "Award-winning designer from Tokyo Art University",
+    role: "Designer",
+    bio: "Creates beautiful property websites",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
   },
-  {
-    id: 3,
-    name: "Hiroshi Tanaka",
-    role: "Lead Developer",
-    bio: "Former Google engineer, web performance expert",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
-  },
-  {
-    id: 4,
-    name: "Yumi Nakamura",
-    role: "Marketing Director",
-    bio: "Specialized in luxury brand digital strategy",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
-  }
 ];

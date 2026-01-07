@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowRight, Award, Users, Target, Heart } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { teamMembers } from "@/data/content";
+import { teamMembers, siteConfig } from "@/data/content";
 
 export default function AboutPage() {
   return (
@@ -24,7 +24,7 @@ export default function AboutPage() {
                 <span className="gradient-text">Luxury Properties</span>
               </h1>
               <p className="body-text mb-8">
-                Founded in Tokyo, DIJITAL TOWERS is Japan&apos;s premier digital agency specializing exclusively in luxury real estate. We combine cutting-edge technology with sophisticated design to create digital experiences that match the prestige of your properties.
+                Founded in Tokyo, {siteConfig.name} is Japan&apos;s premier digital agency specializing exclusively in luxury real estate. We combine cutting-edge technology with sophisticated design to create digital experiences that match the prestige of your properties.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
                 Work With Us
@@ -35,14 +35,14 @@ export default function AboutPage() {
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-large">
                 <Image
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
-                  alt="DIJITAL TOWERS Office"
+                  alt="DIGITAL TOWERS Office"
                   fill
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-large p-6">
-                <div className="text-3xl font-bold text-blue-600">10+</div>
-                <div className="text-sm text-slate-500">Years of Excellence</div>
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-luxe p-8 border border-slate-100">
+                <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">10+</div>
+                <div className="text-sm font-medium text-slate-600 mt-1">Years of Excellence</div>
               </div>
             </div>
           </div>
@@ -83,12 +83,12 @@ export default function AboutPage() {
                 description: "We love what we do and it shows in our work.",
               },
             ].map((value) => (
-              <div key={value.title} className="card p-8 text-center">
-                <div className="feature-icon mx-auto mb-6">
+              <div key={value.title} className="bg-white rounded-2xl shadow-elegant hover-shadow-luxe transition-all duration-500 p-10 text-center border border-slate-100 group cursor-pointer hover:-translate-y-2">
+                <div className="feature-icon mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <value.icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-semibold text-xl text-slate-900 mb-3">{value.title}</h3>
-                <p className="text-slate-500">{value.description}</p>
+                <h3 className="font-semibold text-xl text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">{value.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -109,22 +109,37 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {teamMembers.map((member) => (
-              <div key={member.id} className="text-center group">
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 shadow-medium">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+              <div key={member.id} className="group">
+                <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-elegant hover-shadow-luxe transition-all duration-500 hover:border-blue-200 hover:-translate-y-3">
+                  {/* Image Container */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 text-center">
+                    <h3 className="font-semibold text-xl text-slate-900 mb-1">{member.name}</h3>
+                    <p className="text-slate-500 text-sm font-medium mb-3">{member.role}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">{member.bio}</p>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-lg text-slate-900">{member.name}</h3>
-                <p className="text-blue-600 text-sm font-medium mb-2">{member.role}</p>
-                <p className="text-slate-500 text-sm">{member.bio}</p>
               </div>
             ))}
+          </div>
+
+          {/* View All Button */}
+          <div className="text-center mt-12">
+            <button className="inline-flex items-center gap-2 text-slate-600 font-medium hover:text-slate-900 transition-colors group">
+              View all
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
           </div>
         </div>
       </section>
@@ -139,8 +154,8 @@ export default function AboutPage() {
               { value: "10+", label: "Years Experience" },
               { value: "98%", label: "Client Retention" },
             ].map((stat) => (
-              <div key={stat.label}>
-                <div className="stat-number">{stat.value}</div>
+              <div key={stat.label} className="bg-white rounded-2xl shadow-elegant hover-shadow-luxe transition-all duration-500 p-8 hover:-translate-y-2 cursor-pointer">
+                <div className="stat-number bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">{stat.value}</div>
                 <div className="stat-label">{stat.label}</div>
               </div>
             ))}
@@ -151,20 +166,24 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="section-lg">
         <div className="container-main">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-10 lg:p-16 text-center text-white">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Work Together?
-            </h2>
-            <p className="text-blue-100 text-lg max-w-2xl mx-auto mb-10">
-              Let&apos;s discuss how we can help transform your property&apos;s digital presence.
-            </p>
-            <Link
-              href="/contact"
-              className="bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
-            >
-              Get in Touch
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-3xl shadow-luxe p-12 lg:p-20 text-center text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-3xl" />
+            <div className="relative z-10">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+                Ready to Work Together?
+              </h2>
+              <p className="text-white/90 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                Let&apos;s discuss how we can help transform your property&apos;s digital presence.
+              </p>
+              <Link
+                href="/contact"
+                className="bg-white text-blue-600 font-semibold px-10 py-5 rounded-xl hover:bg-blue-50 transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center gap-2"
+              >
+                Get in Touch
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

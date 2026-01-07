@@ -2,6 +2,22 @@
 
 # dependencies
 /node_modules
+
+# IDE
+.vscode/
+.idea/
+
+# Demo sites
+demo-sites/
+
+# Personal/sensitive files
+*.dmg
+*.xlsx
+*.jpeg
+*.mermaid
+
+# Large video files (host on CDN instead)
+*.mp4
 /.pnp
 .pnp.*
 .yarn/*

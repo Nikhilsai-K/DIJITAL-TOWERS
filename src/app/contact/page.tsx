@@ -1,5 +1,7 @@
-import Link from "next/link";
-import { Mail, Phone, MapPin, Clock, ArrowRight, MessageSquare } from "lucide-react";
+"use client";
+
+import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { siteConfig, faqs } from "@/data/content";
@@ -10,21 +12,43 @@ export default function ContactPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
-        <div className="absolute inset-0 hero-gradient" />
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-blue-100 rounded-full blur-3xl opacity-30" />
-
-        <div className="relative container-main">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-blue-600 font-semibold mb-4">Contact Us</p>
-            <h1 className="heading-1 mb-6">
-              Let&apos;s Create Something{" "}
-              <span className="gradient-text">Extraordinary</span>
-            </h1>
-            <p className="body-text">
+      <section className="relative py-32 bg-gradient-to-br from-slate-50 to-gray-100">
+        <div className="container-main">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-blue-600 font-semibold text-lg mb-6"
+            >
+              Contact Us
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+            >
+              <span className="text-slate-900">Let&apos;s Create Something</span>
+              <br />
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Extraordinary
+              </span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-xl text-slate-600 max-w-3xl mx-auto"
+            >
               Ready to transform your luxury property into a digital masterpiece? Get in touch with our team.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -33,10 +57,16 @@ export default function ContactPage() {
         <div className="container-main">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Contact Form */}
-            <div className="lg:col-span-3">
-              <div className="card p-8 lg:p-10">
-                <h2 className="heading-3 mb-2">Send us a message</h2>
-                <p className="text-slate-500 mb-8">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-3"
+            >
+              <div className="bg-white rounded-3xl shadow-elegant hover-shadow-luxe transition-all duration-500 p-8 lg:p-12 border border-slate-100">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Send us a message</h2>
+                <p className="text-slate-600 mb-10">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
 
                 <form className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -98,20 +128,31 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2">
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="btn-primary w-full flex items-center justify-center gap-2"
+                  >
                     Send Message
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </motion.button>
                 </form>
               </div>
-            </div>
+            </motion.div>
 
             {/* Contact Info */}
-            <div className="lg:col-span-2 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-2 space-y-8"
+            >
               {/* Contact Details */}
-              <div className="card p-8">
-                <h3 className="font-semibold text-lg text-slate-900 mb-6">Contact Information</h3>
-                <div className="space-y-5">
+              <div className="bg-white rounded-3xl shadow-elegant hover-shadow-elegant transition-all duration-500 p-8 border border-slate-100">
+                <h3 className="font-semibold text-lg text-slate-900 mb-8">Contact Information</h3>
+                <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="feature-icon flex-shrink-0 w-10 h-10">
                       <Mail className="w-5 h-5" />
@@ -159,22 +200,7 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Quick Response */}
-              <div className="card p-8 bg-blue-50 border-blue-100">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-2">Quick Response</h3>
-                    <p className="text-sm text-slate-600">
-                      We typically respond to all inquiries within 24 hours during business days.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -182,21 +208,36 @@ export default function ContactPage() {
       {/* FAQ Section */}
       <section className="section-lg section-alt">
         <div className="container-main">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-blue-600 font-semibold mb-3">FAQ</p>
-            <h2 className="heading-2 mb-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <p className="text-blue-600 font-semibold text-lg mb-4">FAQ</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
               Frequently Asked{" "}
-              <span className="gradient-text">Questions</span>
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Questions
+              </span>
             </h2>
-          </div>
+          </motion.div>
 
           <div className="max-w-3xl mx-auto">
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="card p-6">
-                  <h3 className="font-semibold text-slate-900 mb-3">{faq.question}</h3>
-                  <p className="text-slate-500">{faq.answer}</p>
-                </div>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl shadow-elegant hover-shadow-luxe transition-all duration-500 p-8 border border-slate-100 cursor-pointer"
+                >
+                  <h3 className="font-semibold text-xl text-slate-900 mb-4">{faq.question}</h3>
+                  <p className="text-slate-600 leading-relaxed text-base">{faq.answer}</p>
+                </motion.div>
               ))}
             </div>
           </div>

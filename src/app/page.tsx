@@ -1,16 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check, Building2, Landmark, Palette, TrendingUp, Star } from "lucide-react";
+import { ArrowRight, Check, Building2, Landmark, Home as HomeIcon, Sparkles, Zap, Shield, Clock, Eye, Star, Quote } from "lucide-react";
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { stats, services, portfolioItems, testimonials } from "@/data/content";
+import Hero from "@/components/Hero";
+import { services, portfolioItems, processSteps, testimonials } from "@/data/content";
 
 const iconMap = {
   Building2: Building2,
   Landmark: Landmark,
-  Palette: Palette,
-  TrendingUp: TrendingUp,
 };
+
+const features = [
+  { icon: Sparkles, title: "Beautiful Design", description: "Modern, clean designs that impress", color: "blue" },
+  { icon: Zap, title: "Fast Loading", description: "Optimized for speed and performance", color: "green" },
+  { icon: Shield, title: "Secure & Reliable", description: "Built with security in mind", color: "purple" },
+  { icon: Clock, title: "Quick Delivery", description: "Your website ready in weeks", color: "amber" },
+];
+
+const templates = [
+  { id: 1, name: "Tower Elite", category: "High-Rise Tower", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80", color: "blue", link: "/templates" },
+  { id: 2, name: "Villa Luxe", category: "Mansion & Villa", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80", color: "purple", link: "/templates" },
+  { id: 3, name: "Apartment Pro", category: "Apartment Complex", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80", color: "green", link: "/templates/apartment-pro/preview" },
+  { id: 4, name: "Penthouse Premium", category: "Luxury Penthouse", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80", color: "amber", link: "/templates" },
+];
 
 export default function Home() {
   return (
@@ -18,88 +34,88 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 hero-gradient" />
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-3xl opacity-50" />
+      <Hero />
 
-        <div className="relative container-main">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
-            <div className="badge mb-8">
-              <span className="w-2 h-2 bg-blue-500 rounded-full" />
-              Japan&apos;s Premier Luxury Property Web Design
-            </div>
+      {/* Features Section - Compact & Elegant */}
+      <section className="py-16 bg-gradient-to-b from-white to-slate-50/50">
+        <div className="container-main">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {features.map((feature, index) => {
+              const colorMap = {
+                blue: { bg: "bg-blue-50", text: "text-blue-600", iconBg: "bg-blue-600" },
+                green: { bg: "bg-green-50", text: "text-green-600", iconBg: "bg-green-600" },
+                purple: { bg: "bg-purple-50", text: "text-purple-600", iconBg: "bg-purple-600" },
+                amber: { bg: "bg-amber-50", text: "text-amber-600", iconBg: "bg-amber-600" },
+              };
 
-            {/* Main Heading */}
-            <h1 className="heading-1 mb-6">
-              We Create{" "}
-              <span className="gradient-text">Digital Masterpieces</span>
-              <br />
-              For Luxury Properties
-            </h1>
+              const colors = colorMap[feature.color as keyof typeof colorMap];
 
-            {/* Subtitle */}
-            <p className="body-text max-w-2xl mx-auto mb-10">
-              We create stunning, conversion-focused websites for luxury mansions, towers, and premium apartments across Japan. Transform your prestigious property into a digital masterpiece.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-              <Link href="/portfolio" className="btn-primary flex items-center gap-2">
-                View Our Work
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/contact" className="btn-secondary flex items-center gap-2">
-                Start a Project
-              </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="stat-card">
-                  <div className="stat-number">{stat.value}</div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/60 p-6 hover:shadow-lg hover:border-slate-300 transition-all duration-300 group text-center"
+                >
+                  <div className={`${colors.iconBg} w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Services Preview Section */}
-      <section className="section-lg section-alt">
+      {/* Services Section */}
+      <section className="py-12 bg-white">
         <div className="container-main">
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-blue-600 font-semibold mb-3">Our Services</p>
-            <h2 className="heading-2 mb-6">
-              Elevate Your Property&apos;s{" "}
-              <span className="gradient-text">Digital Presence</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-2xl mx-auto mb-8"
+          >
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2 block">
+              Our Services
+            </span>
+            <h2 className="heading-2 mb-3">
+              What We <span className="gradient-text">Build</span>
             </h2>
             <p className="body-text">
-              We offer comprehensive digital solutions tailored specifically for the luxury real estate market in Japan.
+              Beautiful websites tailored for luxury properties
             </p>
-          </div>
+          </motion.div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-12">
-            {services.map((service) => {
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {services.map((service, index) => {
               const IconComponent = iconMap[service.icon as keyof typeof iconMap];
               return (
-                <div key={service.id} className="card p-8 lg:p-10">
-                  {/* Icon */}
-                  <div className="feature-icon mb-6">
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  className="card p-8 hover:shadow-2xl hover:shadow-blue-100 transition-all duration-500 group cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 8 }}
+                    className="feature-icon mb-6 group-hover:shadow-glow-blue transition-all duration-300"
+                  >
                     <IconComponent className="w-6 h-6" />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="heading-3 mb-4">{service.title}</h3>
+                  </motion.div>
+                  <h3 className="heading-3 mb-4 group-hover:text-blue-600 transition-colors">{service.title}</h3>
                   <p className="body-text-sm mb-6">{service.description}</p>
-
-                  {/* Features */}
                   <div className="grid grid-cols-2 gap-3">
                     {service.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-2 text-sm">
@@ -108,151 +124,228 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link href="/services" className="btn-secondary inline-flex items-center gap-2">
-              View All Services
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Portfolio Preview Section */}
-      <section className="section-lg">
+      {/* Templates Preview Section */}
+      <section className="py-12 bg-gradient-to-br from-slate-50 to-white">
         <div className="container-main">
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-blue-600 font-semibold mb-3">Our Portfolio</p>
-            <h2 className="heading-2 mb-6">
-              Showcasing Japan&apos;s{" "}
-              <span className="gradient-text">Most Prestigious Properties</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-8"
+          >
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2 block">
+              Templates
+            </span>
+            <h2 className="heading-2 mb-3">
+              Ready-to-Use <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Templates</span>
             </h2>
             <p className="body-text">
-              Explore our collection of stunning digital experiences we&apos;ve created for luxury real estate across Japan.
+              Choose from our professionally designed templates and customize them for your property
             </p>
-          </div>
+          </motion.div>
 
-          {/* Portfolio Grid - Show first 3 */}
-          <div className="grid-portfolio mb-12">
-            {portfolioItems.slice(0, 3).map((item) => (
-              <div key={item.id} className="card-elevated overflow-hidden group">
-                <div className="image-container aspect-[4/3]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">
-                    {item.category}
-                  </span>
-                  <h3 className="text-xl font-semibold text-slate-900 mt-2 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 mb-3">{item.location}</p>
-                  <p className="text-sm text-slate-600">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link href="/portfolio" className="btn-primary inline-flex items-center gap-2">
-              View All Projects
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="section-lg section-alt">
-        <div className="container-main">
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-blue-600 font-semibold mb-3">Testimonials</p>
-            <h2 className="heading-2 mb-6">
-              Trusted by Japan&apos;s{" "}
-              <span className="gradient-text">Leading Developers</span>
-            </h2>
-            <p className="body-text">
-              Don&apos;t just take our word for it. Here&apos;s what our clients have to say.
-            </p>
-          </div>
-
-          {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="testimonial-card">
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-
-                {/* Content */}
-                <p className="text-slate-600 mb-6 leading-relaxed">
-                  &ldquo;{testimonial.content}&rdquo;
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">{testimonial.name}</p>
-                    <p className="text-sm text-slate-500">{testimonial.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-lg">
-        <div className="container-main">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-10 lg:p-16 text-center text-white">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Transform Your Property?
-            </h2>
-            <p className="text-blue-100 text-lg max-w-2xl mx-auto mb-10">
-              Let&apos;s create something extraordinary together. Get in touch to discuss your project.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {templates.map((template, index) => (
+              <motion.div
+                key={template.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group cursor-pointer"
               >
-                Start Your Project
-                <ArrowRight className="w-4 h-4" />
+                <Link href={template.link}>
+                  <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-500 bg-white border border-slate-100">
+                    <div className="aspect-[4/3] relative">
+                      <Image
+                        src={template.image}
+                        alt={template.name}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                      {/* Content */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <h3 className="text-base font-bold mb-0.5">{template.name}</h3>
+                        <p className="text-xs text-white/90">{template.category}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-8"
+          >
+            <Link href="/templates">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg inline-flex items-center gap-2"
+              >
+                Browse All Templates
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-12 section-alt">
+        <div className="container-main">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-2xl mx-auto mb-8"
+          >
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2 block">
+              How It Works
+            </span>
+            <h2 className="heading-2 mb-3">
+              Simple <span className="gradient-text">Process</span>
+            </h2>
+            <p className="body-text">
+              We make it easy to get your property online
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Connection Line */}
+            <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200" />
+
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="relative text-center"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="relative z-10 inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg"
+                >
+                  <span className="text-3xl font-bold text-white">{step.step}</span>
+                </motion.div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">{step.title}</h3>
+                <p className="text-slate-600 max-w-xs mx-auto">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Templates CTA Section */}
+      <section className="py-12 bg-gradient-to-br from-slate-900 to-slate-800 relative overflow-hidden">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
+        />
+
+        <div className="container-main relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Browse Our Templates
+            </h2>
+            <p className="text-slate-300 text-lg max-w-xl mx-auto mb-8">
+              Explore our collection of property website templates and find the perfect one for your building
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/templates">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-slate-900 font-semibold px-8 py-4 rounded-xl hover:bg-slate-100 transition-colors inline-flex items-center gap-2"
+                >
+                  View Templates
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
               </Link>
-              <Link
-                href="/portfolio"
-                className="border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
-              >
-                View Our Work
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
+                >
+                  Get Custom Design
+                </motion.button>
               </Link>
             </div>
-          </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="section-lg bg-white">
+        <div className="container-main">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-10 lg:p-16 text-center text-white relative overflow-hidden"
+          >
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 10, repeat: Infinity }}
+              className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{ scale: [1.2, 1, 1.2] }}
+              transition={{ duration: 12, repeat: Infinity }}
+              className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-3xl"
+            />
+
+            <div className="relative z-10">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                Ready to Transform Your Property&apos;s Online Presence?
+              </h2>
+              <p className="text-blue-100 text-lg max-w-xl mx-auto mb-8">
+                Let&apos;s create a beautiful website that helps your property stand out and attract more inquiries.
+              </p>
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
+                >
+                  Get Started Today
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
