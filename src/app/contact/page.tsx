@@ -4,9 +4,14 @@ import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { siteConfig, faqs } from "@/data/content";
+import { siteConfig } from "@/data/content";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function ContactPage() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <main className="relative">
       <Navigation />
@@ -26,7 +31,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-blue-600 font-semibold text-lg mb-6"
             >
-              Contact Us
+              {t.contactPage.hero.badge}
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -34,10 +39,10 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
             >
-              <span className="text-slate-900">Let&apos;s Create Something</span>
+              <span className="text-slate-900">{t.contactPage.hero.titlePrefix}</span>
               <br />
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Extraordinary
+                {t.contactPage.hero.titleHighlight}
               </span>
             </motion.h1>
             <motion.p
@@ -46,7 +51,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-xl text-slate-600 max-w-3xl mx-auto"
             >
-              Ready to transform your luxury property into a digital masterpiece? Get in touch with our team.
+              {t.contactPage.hero.desc}
             </motion.p>
           </motion.div>
         </div>
@@ -65,24 +70,24 @@ export default function ContactPage() {
               className="lg:col-span-3"
             >
               <div className="bg-white rounded-3xl shadow-elegant hover-shadow-luxe transition-all duration-500 p-8 lg:p-12 border border-slate-100">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Send us a message</h2>
-                <p className="text-slate-600 mb-10">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{t.contactPage.form.title}</h2>
+                <p className="text-slate-600 mb-10">{t.contactPage.form.desc}</p>
 
                 <form className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="form-label">Your Name</label>
+                      <label className="form-label">{t.contactPage.form.labels.name}</label>
                       <input
                         type="text"
-                        placeholder="John Doe"
+                        placeholder={t.contactPage.form.placeholders.name}
                         className="form-input"
                       />
                     </div>
                     <div>
-                      <label className="form-label">Email Address</label>
+                      <label className="form-label">{t.contactPage.form.labels.email}</label>
                       <input
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder={t.contactPage.form.placeholders.email}
                         className="form-input"
                       />
                     </div>
@@ -90,40 +95,40 @@ export default function ContactPage() {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="form-label">Company / Property Name</label>
+                      <label className="form-label">{t.contactPage.form.labels.company}</label>
                       <input
                         type="text"
-                        placeholder="Your Company"
+                        placeholder={t.contactPage.form.placeholders.company}
                         className="form-input"
                       />
                     </div>
                     <div>
-                      <label className="form-label">Phone Number</label>
+                      <label className="form-label">{t.contactPage.form.labels.phone}</label>
                       <input
                         type="tel"
-                        placeholder="+81 3-1234-5678"
+                        placeholder={t.contactPage.form.placeholders.phone}
                         className="form-input"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="form-label">Project Type</label>
+                    <label className="form-label">{t.contactPage.form.labels.projectType}</label>
                     <select className="form-input">
-                      <option value="">Select a service</option>
-                      <option value="website">Luxury Property Website</option>
-                      <option value="tower">Tower & High-Rise Solutions</option>
-                      <option value="branding">Real Estate Branding</option>
-                      <option value="marketing">Performance Marketing</option>
-                      <option value="other">Other</option>
+                      <option value="">{t.contactPage.form.options.default}</option>
+                      <option value="website">{t.contactPage.form.options.website}</option>
+                      <option value="tower">{t.contactPage.form.options.tower}</option>
+                      <option value="branding">{t.contactPage.form.options.branding}</option>
+                      <option value="marketing">{t.contactPage.form.options.marketing}</option>
+                      <option value="other">{t.contactPage.form.options.other}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="form-label">Project Details</label>
+                    <label className="form-label">{t.contactPage.form.labels.projectDetails}</label>
                     <textarea
                       rows={5}
-                      placeholder="Tell us about your property and project requirements..."
+                      placeholder={t.contactPage.form.placeholders.details}
                       className="form-input resize-none"
                     />
                   </div>
@@ -134,7 +139,7 @@ export default function ContactPage() {
                     whileTap={{ scale: 0.98 }}
                     className="btn-primary w-full flex items-center justify-center gap-2"
                   >
-                    Send Message
+                    {t.contactPage.form.btn}
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
                 </form>
@@ -151,14 +156,14 @@ export default function ContactPage() {
             >
               {/* Contact Details */}
               <div className="bg-white rounded-3xl shadow-elegant hover-shadow-elegant transition-all duration-500 p-8 border border-slate-100">
-                <h3 className="font-semibold text-lg text-slate-900 mb-8">Contact Information</h3>
+                <h3 className="font-semibold text-lg text-slate-900 mb-8">{t.contactPage.info.title}</h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="feature-icon flex-shrink-0 w-10 h-10">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 mb-1">Email</p>
+                      <p className="text-sm text-slate-500 mb-1">{t.contactPage.info.labels.email}</p>
                       <a href={`mailto:${siteConfig.contact.email}`} className="font-medium text-slate-900 hover:text-blue-600 transition-colors">
                         {siteConfig.contact.email}
                       </a>
@@ -170,7 +175,7 @@ export default function ContactPage() {
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 mb-1">Phone</p>
+                      <p className="text-sm text-slate-500 mb-1">{t.contactPage.info.labels.phone}</p>
                       <a href={`tel:${siteConfig.contact.phone}`} className="font-medium text-slate-900 hover:text-blue-600 transition-colors">
                         {siteConfig.contact.phone}
                       </a>
@@ -182,7 +187,7 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 mb-1">Office</p>
+                      <p className="text-sm text-slate-500 mb-1">{t.contactPage.info.labels.office}</p>
                       <p className="font-medium text-slate-900">
                         {siteConfig.contact.address}
                       </p>
@@ -194,8 +199,8 @@ export default function ContactPage() {
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 mb-1">Business Hours</p>
-                      <p className="font-medium text-slate-900">Mon - Fri: 9:00 - 18:00 JST</p>
+                      <p className="text-sm text-slate-500 mb-1">{t.contactPage.info.labels.hours}</p>
+                      <p className="font-medium text-slate-900">{t.contactPage.info.labels.hoursValue}</p>
                     </div>
                   </div>
                 </div>
@@ -215,18 +220,18 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <p className="text-blue-600 font-semibold text-lg mb-4">FAQ</p>
+            <p className="text-blue-600 font-semibold text-lg mb-4">{t.contactPage.faq.badge}</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-              Frequently Asked{" "}
+              {t.contactPage.faq.titlePrefix}{" "}
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Questions
+                {t.contactPage.faq.titleHighlight}
               </span>
             </h2>
           </motion.div>
 
           <div className="max-w-3xl mx-auto">
             <div className="space-y-4">
-              {faqs.map((faq, index) => (
+              {t.contactPage.faq.items.map((faq, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -235,8 +240,8 @@ export default function ContactPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-white rounded-2xl shadow-elegant hover-shadow-luxe transition-all duration-500 p-8 border border-slate-100 cursor-pointer"
                 >
-                  <h3 className="font-semibold text-xl text-slate-900 mb-4">{faq.question}</h3>
-                  <p className="text-slate-600 leading-relaxed text-base">{faq.answer}</p>
+                  <h3 className="font-semibold text-xl text-slate-900 mb-4">{faq.q}</h3>
+                  <p className="text-slate-600 leading-relaxed text-base">{faq.a}</p>
                 </motion.div>
               ))}
             </div>

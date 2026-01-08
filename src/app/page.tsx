@@ -8,27 +8,32 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import { services, portfolioItems, processSteps, testimonials } from "@/data/content";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 const iconMap = {
   Building2: Building2,
   Landmark: Landmark,
 };
 
-const features = [
-  { icon: Sparkles, title: "Beautiful Design", description: "Modern, clean designs that impress", color: "blue" },
-  { icon: Zap, title: "Fast Loading", description: "Optimized for speed and performance", color: "green" },
-  { icon: Shield, title: "Secure & Reliable", description: "Built with security in mind", color: "purple" },
-  { icon: Clock, title: "Quick Delivery", description: "Your website ready in weeks", color: "amber" },
-];
-
-const templates = [
-  { id: 1, name: "Tower Elite", category: "High-Rise Tower", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80", color: "blue", link: "/templates" },
-  { id: 2, name: "Villa Luxe", category: "Mansion & Villa", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80", color: "purple", link: "/templates" },
-  { id: 3, name: "Apartment Pro", category: "Apartment Complex", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80", color: "green", link: "/templates/apartment-pro/preview" },
-  { id: 4, name: "Penthouse Premium", category: "Luxury Penthouse", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80", color: "amber", link: "/templates" },
-];
-
 export default function Home() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
+  const features = [
+    { icon: Sparkles, title: t.features.beautiful.title, description: t.features.beautiful.desc, color: "blue" },
+    { icon: Zap, title: t.features.fast.title, description: t.features.fast.desc, color: "green" },
+    { icon: Shield, title: t.features.secure.title, description: t.features.secure.desc, color: "purple" },
+    { icon: Clock, title: t.features.quick.title, description: t.features.quick.desc, color: "amber" },
+  ];
+
+  const templates = [
+    { id: 1, name: t.templatesSection.items[0].name, category: t.templatesSection.items[0].cat, image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80", color: "blue", link: "/templates" },
+    { id: 2, name: t.templatesSection.items[1].name, category: t.templatesSection.items[1].cat, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80", color: "purple", link: "/templates" },
+    { id: 3, name: t.templatesSection.items[2].name, category: t.templatesSection.items[2].cat, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80", color: "green", link: "/templates/apartment-pro/preview" },
+    { id: 4, name: t.templatesSection.items[3].name, category: t.templatesSection.items[3].cat, image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80", color: "amber", link: "/templates" },
+  ];
+
   return (
     <main className="relative">
       <Navigation />
@@ -86,22 +91,25 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-8"
           >
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2 block">
-              Our Services
+              {t.services.label}
             </span>
             <h2 className="heading-2 mb-3">
-              What We <span className="gradient-text">Build</span>
+              {t.services.titlePrefix} <span className="gradient-text">{t.services.titleHighlight}</span>
             </h2>
             <p className="body-text">
-              Beautiful websites tailored for luxury properties
+              {t.services.desc}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {services.map((service, index) => {
-              const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+            {t.services.items.map((service, index) => {
+              // We'll map the index back to the icons since the translation array doesn't hold icons
+              const icons = ["Building2", "Landmark"];
+              const IconComponent = iconMap[icons[index] as keyof typeof iconMap];
+
               return (
                 <motion.div
-                  key={service.id}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -115,7 +123,7 @@ export default function Home() {
                     <IconComponent className="w-6 h-6" />
                   </motion.div>
                   <h3 className="heading-3 mb-4 group-hover:text-blue-600 transition-colors">{service.title}</h3>
-                  <p className="body-text-sm mb-6">{service.description}</p>
+                  <p className="body-text-sm mb-6">{service.desc}</p>
                   <div className="grid grid-cols-2 gap-3">
                     {service.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-2 text-sm">
@@ -142,13 +150,13 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-8"
           >
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2 block">
-              Templates
+              {t.templatesSection.label}
             </span>
             <h2 className="heading-2 mb-3">
-              Ready-to-Use <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Templates</span>
+              {t.templatesSection.titlePrefix} <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">{t.templatesSection.titleHighlight}</span>
             </h2>
             <p className="body-text">
-              Choose from our professionally designed templates and customize them for your property
+              {t.templatesSection.desc}
             </p>
           </motion.div>
 
@@ -198,7 +206,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg inline-flex items-center gap-2"
               >
-                Browse All Templates
+                {t.templatesSection.cta}
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
             </Link>
@@ -217,13 +225,13 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-8"
           >
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2 block">
-              How It Works
+              {t.process.label}
             </span>
             <h2 className="heading-2 mb-3">
-              Simple <span className="gradient-text">Process</span>
+              {t.process.titlePrefix} <span className="gradient-text">{t.process.titleHighlight}</span>
             </h2>
             <p className="body-text">
-              We make it easy to get your property online
+              {t.process.desc}
             </p>
           </motion.div>
 
@@ -231,9 +239,9 @@ export default function Home() {
             {/* Connection Line */}
             <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200" />
 
-            {processSteps.map((step, index) => (
+            {t.process.steps.map((step, index) => (
               <motion.div
-                key={step.step}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -244,10 +252,10 @@ export default function Home() {
                   whileHover={{ scale: 1.1 }}
                   className="relative z-10 inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-6 shadow-lg"
                 >
-                  <span className="text-3xl font-bold text-white">{step.step}</span>
+                  <span className="text-3xl font-bold text-white">{index + 1}</span>
                 </motion.div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">{step.title}</h3>
-                <p className="text-slate-600 max-w-xs mx-auto">{step.description}</p>
+                <p className="text-slate-600 max-w-xs mx-auto">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -276,10 +284,10 @@ export default function Home() {
             className="text-center"
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Browse Our Templates
+              {t.ctaSection.title}
             </h2>
             <p className="text-slate-300 text-lg max-w-xl mx-auto mb-8">
-              Explore our collection of property website templates and find the perfect one for your building
+              {t.ctaSection.desc}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/templates">
@@ -288,7 +296,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-slate-900 font-semibold px-8 py-4 rounded-xl hover:bg-slate-100 transition-colors inline-flex items-center gap-2"
                 >
-                  View Templates
+                  {t.ctaSection.btn1}
                   <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </Link>
@@ -298,7 +306,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="border-2 border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
                 >
-                  Get Custom Design
+                  {t.ctaSection.btn2}
                 </motion.button>
               </Link>
             </div>
@@ -329,10 +337,10 @@ export default function Home() {
 
             <div className="relative z-10">
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                Ready to Transform Your Property&apos;s Online Presence?
+                {t.finalCta.title}
               </h2>
               <p className="text-blue-100 text-lg max-w-xl mx-auto mb-8">
-                Let&apos;s create a beautiful website that helps your property stand out and attract more inquiries.
+                {t.finalCta.desc}
               </p>
               <Link href="/contact">
                 <motion.button
@@ -340,7 +348,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
                 >
-                  Get Started Today
+                  {t.finalCta.btn}
                   <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </Link>

@@ -5,8 +5,13 @@ import Image from "next/image";
 import { ArrowUp, Mail, Phone, MapPin } from "lucide-react";
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { siteConfig } from "@/data/content";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -15,15 +20,15 @@ export default function Footer() {
 
   const footerLinks = {
     templates: [
-      { label: "Tower Elite", href: "/templates" },
-      { label: "Villa Luxe", href: "/templates" },
-      { label: "Apartment Pro", href: "/templates" },
-      { label: "Penthouse Premium", href: "/templates" },
+      { label: t.templatesSection.items[0].name, href: "/templates" },
+      { label: t.templatesSection.items[1].name, href: "/templates" },
+      { label: t.templatesSection.items[2].name, href: "/templates" },
+      { label: t.templatesSection.items[3].name, href: "/templates" },
     ],
     company: [
-      { label: "About Us", href: "/portfolio" },
-      { label: "Templates", href: "/templates" },
-      { label: "Contact", href: "/contact" },
+      { label: t.footer.links.about, href: "/portfolio" },
+      { label: t.footer.links.templates, href: "/templates" },
+      { label: t.footer.links.contact, href: "/contact" },
     ],
   };
 
@@ -49,7 +54,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
-              {siteConfig.tagline}
+              {t.footer.tagline}
             </p>
             <div className="flex gap-3">
               {[
@@ -73,7 +78,7 @@ export default function Footer() {
           {/* Links Columns */}
           <div className="lg:col-span-3 grid sm:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-white font-semibold mb-4">Templates</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.headers.templates}</h3>
               <ul className="space-y-3">
                 {footerLinks.templates.map((link) => (
                   <li key={link.label}>
@@ -88,7 +93,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.headers.company}</h3>
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
@@ -103,7 +108,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-4">Contact Info</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.headers.contact}</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3 text-sm text-slate-400">
                   <Mail className="w-4 h-4 mt-0.5 text-blue-400" />
@@ -125,11 +130,11 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-500">
-            <span>&copy; {currentYear} DigiHome. All rights reserved.</span>
+            <span>&copy; {currentYear} DigiHome. {t.footer.rights}</span>
             <span className="hidden md:inline text-slate-700">|</span>
-            <Link href="/" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/" className="hover:text-white transition-colors">{t.footer.links.privacy}</Link>
             <span className="hidden md:inline text-slate-700">|</span>
-            <Link href="/" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/" className="hover:text-white transition-colors">{t.footer.links.terms}</Link>
           </div>
 
           <button

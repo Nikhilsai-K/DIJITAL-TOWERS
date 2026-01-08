@@ -4,14 +4,25 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { navItems, siteConfig } from "@/data/content";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { lang, setLang } = useLanguage();
+  const t = translations[lang].nav;
+
+  const translatedNavItems = [
+    { label: t.home, href: "/" },
+    { label: t.templates, href: "/templates" },
+    { label: t.about, href: "/portfolio" },
+    { label: t.contact, href: "/contact" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,17 +59,16 @@ export default function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
-              {navItems.map((item) => (
+              {translatedNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className="group relative py-2"
                 >
-                  <span className={`text-[15px] font-semibold transition-all duration-300 ${
-                    pathname === item.href
-                      ? "text-blue-600"
-                      : "text-slate-700 hover:text-slate-900"
-                  }`}>
+                  <span className={`text-[15px] font-semibold transition-all duration-300 ${pathname === item.href
+                    ? "text-blue-600"
+                    : "text-slate-700 hover:text-slate-900"
+                    }`}>
                     {item.label}
                   </span>
                   {pathname === item.href && (
@@ -74,6 +84,21 @@ export default function Navigation() {
                 </Link>
               ))}
             </div>
+
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLang(lang === "en" ? "ja" : "en")}
+              className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-slate-200 hover:border-blue-400 bg-white/80 backdrop-blur-sm transition-all duration-300 group"
+            >
+              <Globe className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
+              <span className={`text-sm font-bold transition-colors ${lang === "en" ? "text-blue-600" : "text-slate-400"}`}>
+                EN
+              </span>
+              <span className="text-slate-300">/</span>
+              <span className={`text-sm font-bold transition-colors ${lang === "ja" ? "text-blue-600" : "text-slate-400"}`}>
+                JP
+              </span>
+            </button>
 
             {/* Contact CTA */}
             <Link
@@ -200,7 +225,7 @@ export default function Navigation() {
 
               {/* Navigation Items with Stagger Animation */}
               <nav className="flex-1 space-y-2">
-                {navItems.map((item, index) => {
+                {translatedNavItems.map((item, index) => {
                   const isActive = pathname === item.href;
                   return (
                     <motion.div
@@ -266,6 +291,34 @@ export default function Navigation() {
                   );
                 })}
               </nav>
+
+              {/* Language Toggle - Mobile */}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.55, type: "spring", stiffness: 180, damping: 20 }}
+                className="pt-4 border-t border-slate-200"
+              >
+                <button
+                  onClick={() => setLang(lang === "en" ? "ja" : "en")}
+                  className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-slate-50 to-slate-100 hover:from-blue-50 hover:to-purple-50 transition-all duration-300 group"
+                >
+                  <Globe className="w-5 h-5 text-slate-500 group-hover:text-blue-600 transition-colors" />
+                  <span className={`text-base font-bold transition-colors ${lang === "en" ? "text-blue-600" : "text-slate-400"}`}>
+                    English
+                  </span>
+                  <div className="w-12 h-6 rounded-full bg-slate-200 relative transition-colors">
+                    <motion.div
+                      animate={{ x: lang === "ja" ? 24 : 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+                    />
+                  </div>
+                  <span className={`text-base font-bold transition-colors ${lang === "ja" ? "text-blue-600" : "text-slate-400"}`}>
+                    日本語
+                  </span>
+                </button>
+              </motion.div>
 
               {/* Contact Info Section */}
               <motion.div

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
+import SplashScreen from "@/components/SplashScreen";
 
 export const metadata: Metadata = {
   title: "DigiHome | Premium Luxury Property Website Design Agency",
@@ -58,7 +60,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans antialiased bg-white text-slate-900" suppressHydrationWarning>
-        {children}
+        <LanguageProvider>
+          <SplashScreen>
+            {children}
+          </SplashScreen>
+        </LanguageProvider>
       </body>
     </html>
   );

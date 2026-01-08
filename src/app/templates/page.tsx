@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 const templates = [
   {
@@ -67,6 +69,9 @@ function TemplatePreview({
   city: string;
   onClose: () => void;
 }) {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -92,7 +97,7 @@ function TemplatePreview({
           className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
         >
           <X className="w-4 h-4" />
-          Close Preview
+          {t.templatesPage.preview.close}
         </button>
       </div>
 
@@ -154,9 +159,9 @@ function TemplatePreview({
         {/* Features Section */}
         <div className="py-20 px-12 bg-slate-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-4">Why Choose {propertyName}</h2>
+            <h2 className="text-4xl font-bold text-center mb-4">{t.templatesPage.preview.whyChoose} {propertyName}</h2>
             <p className="text-slate-600 text-center mb-12 max-w-2xl mx-auto">
-              Discover the perfect blend of luxury, comfort, and convenience
+              {t.templatesPage.preview.whyChooseDesc}
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
@@ -205,7 +210,7 @@ function TemplatePreview({
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-2">{unit} Apartment</h3>
-                    <p className="text-slate-600 mb-4">Starting from ¥{(i + 1) * 50},000/month</p>
+                    <p className="text-slate-600 mb-4">{t.templatesPage.preview.startingFrom} ¥{(i + 1) * 50},000/month</p>
                     <button className={`w-full py-3 rounded-xl bg-gradient-to-r ${template.gradient} text-white font-semibold`}>
                       View Details
                     </button>
@@ -219,10 +224,10 @@ function TemplatePreview({
         {/* Contact Section */}
         <div className={`py-20 px-12 bg-gradient-to-r ${template.gradient}`}>
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-4xl font-bold mb-4">Ready to Make {propertyName} Your Home?</h2>
+            <h2 className="text-4xl font-bold mb-4">{t.templatesPage.preview.contactTitle} {propertyName} {t.templatesPage.preview.contactDesc}</h2>
             <p className="text-white/80 text-lg mb-8">Contact us today to schedule a viewing</p>
             <button className="bg-white text-slate-900 px-8 py-4 rounded-xl font-semibold">
-              Schedule a Visit
+              {t.templatesPage.preview.contactBtn}
             </button>
           </div>
         </div>
@@ -235,7 +240,7 @@ function TemplatePreview({
               <p className="text-slate-400">{city}</p>
             </div>
             <p className="text-slate-400 text-sm">
-              Powered by DigiHome
+              {t.templatesPage.preview.footerPowered}
             </p>
           </div>
         </footer>
@@ -256,6 +261,9 @@ function FinalWebsite({
   city: string;
   onExit: () => void;
 }) {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -267,14 +275,14 @@ function FinalWebsite({
       <div className={`bg-gradient-to-r ${template.gradient} text-white py-3 px-6 flex items-center justify-between`}>
         <div className="flex items-center gap-3">
           <Sparkles className="w-5 h-5" />
-          <span className="font-medium">Your website is ready! Template: {template.name}</span>
+          <span className="font-medium">{t.templatesPage.preview.success} {template.name}</span>
         </div>
         <button
           onClick={onExit}
           className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          Exit Playground
+          {t.templatesPage.preview.exit}
         </button>
       </div>
 
@@ -468,6 +476,9 @@ export default function TemplatesPage() {
   const [selectedTemplate, setSelectedTemplate] = useState<number | null>(null);
   const [previewTemplate, setPreviewTemplate] = useState<number | null>(null);
 
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   const currentTemplate = templates.find((t) => t.id === selectedTemplate);
   const previewingTemplate = templates.find((t) => t.id === previewTemplate);
 
@@ -519,7 +530,7 @@ export default function TemplatesPage() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6"
             >
               <Play className="w-4 h-4" />
-              Interactive Playground
+              {t.templatesPage.hero.badge}
             </motion.div>
 
             <motion.h1
@@ -528,10 +539,10 @@ export default function TemplatesPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
             >
-              <span className="text-slate-900">Build Your Website</span>
+              <span className="text-slate-900">{t.templatesPage.hero.titlePrefix}</span>
               <br />
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                In Minutes
+                {t.templatesPage.hero.titleHighlight}
               </span>
             </motion.h1>
 
@@ -541,7 +552,7 @@ export default function TemplatesPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-slate-600 max-w-2xl mx-auto"
             >
-              Enter your property details, preview templates with your content, and see your website come to life
+              {t.templatesPage.hero.desc}
             </motion.p>
           </motion.div>
         </div>
@@ -560,17 +571,17 @@ export default function TemplatesPage() {
               <div className="text-center mb-10">
                 <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs">1</span>
-                  Step 1 of 2
+                  {t.templatesPage.playground.step1.badge}
                 </div>
-                <h2 className="text-3xl font-bold text-slate-900 mb-3">Enter Your Property Details</h2>
-                <p className="text-slate-600">Tell us about your property to see personalized previews</p>
+                <h2 className="text-3xl font-bold text-slate-900 mb-3">{t.templatesPage.playground.step1.title}</h2>
+                <p className="text-slate-600">{t.templatesPage.playground.step1.desc}</p>
               </div>
 
               <div className="bg-slate-50 rounded-3xl p-8 shadow-xl">
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Property Name
+                      {t.templatesPage.playground.step1.labels.name}
                     </label>
                     <div className="relative">
                       <Building className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -578,7 +589,7 @@ export default function TemplatesPage() {
                         type="text"
                         value={propertyName}
                         onChange={(e) => setPropertyName(e.target.value)}
-                        placeholder="e.g., Sky Tower Residence"
+                        placeholder={t.templatesPage.playground.step1.labels.namePlaceholder}
                         className="w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-xl text-lg focus:border-blue-500 focus:outline-none transition-colors"
                       />
                     </div>
@@ -586,7 +597,7 @@ export default function TemplatesPage() {
 
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      City / Location
+                      {t.templatesPage.playground.step1.labels.city}
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -594,7 +605,7 @@ export default function TemplatesPage() {
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
-                        placeholder="e.g., Tokyo, Shibuya"
+                        placeholder={t.templatesPage.playground.step1.labels.cityPlaceholder}
                         className="w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-xl text-lg focus:border-blue-500 focus:outline-none transition-colors"
                       />
                     </div>
@@ -605,7 +616,7 @@ export default function TemplatesPage() {
                     disabled={!propertyName.trim() || !city.trim()}
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-xl transition-all"
                   >
-                    Continue to Templates
+                    {t.templatesPage.playground.step1.btn}
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -622,11 +633,11 @@ export default function TemplatesPage() {
               <div className="text-center mb-10">
                 <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                   <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs">2</span>
-                  Step 2 of 2
+                  {t.templatesPage.playground.step2.badge}
                 </div>
-                <h2 className="text-3xl font-bold text-slate-900 mb-3">Choose Your Template</h2>
+                <h2 className="text-3xl font-bold text-slate-900 mb-3">{t.templatesPage.playground.step2.title}</h2>
                 <p className="text-slate-600">
-                  Preview each template with your property: <span className="font-semibold text-slate-900">{propertyName}</span> in <span className="font-semibold text-slate-900">{city}</span>
+                  {t.templatesPage.playground.step2.desc} <span className="font-semibold text-slate-900">{propertyName}</span> in <span className="font-semibold text-slate-900">{city}</span>
                 </p>
               </div>
 
@@ -640,9 +651,8 @@ export default function TemplatesPage() {
                       key={template.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all cursor-pointer ${
-                        isSelected ? "ring-4 ring-blue-500 shadow-xl" : "hover:shadow-xl"
-                      }`}
+                      className={`relative bg-white rounded-2xl overflow-hidden shadow-lg transition-all cursor-pointer ${isSelected ? "ring-4 ring-blue-500 shadow-xl" : "hover:shadow-xl"
+                        }`}
                       onClick={() => handleSelect(template.id)}
                     >
                       {isSelected && (
@@ -681,26 +691,25 @@ export default function TemplatesPage() {
                           className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors"
                         >
                           <Eye className="w-4 h-4" />
-                          Preview
+                          {t.templatesPage.playground.step2.btnPreview}
                         </button>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             handleSelect(template.id);
                           }}
-                          className={`flex-1 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors ${
-                            isSelected
-                              ? `bg-gradient-to-r ${template.gradient} text-white`
-                              : "bg-slate-900 text-white hover:bg-slate-800"
-                          }`}
+                          className={`flex-1 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors ${isSelected
+                            ? `bg-gradient-to-r ${template.gradient} text-white`
+                            : "bg-slate-900 text-white hover:bg-slate-800"
+                            }`}
                         >
                           {isSelected ? (
                             <>
                               <Check className="w-4 h-4" />
-                              Selected
+                              {t.templatesPage.playground.step2.btnSelected}
                             </>
                           ) : (
-                            "Select"
+                            t.templatesPage.playground.step2.btnSelect
                           )}
                         </button>
                       </div>
@@ -716,7 +725,7 @@ export default function TemplatesPage() {
                   className="px-6 py-3 text-slate-600 hover:text-slate-900 font-semibold flex items-center gap-2"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Back
+                  {t.templatesPage.playground.step2.btnBack}
                 </button>
                 <button
                   onClick={handleFinish}
@@ -724,7 +733,7 @@ export default function TemplatesPage() {
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-xl transition-all"
                 >
                   <Sparkles className="w-5 h-5" />
-                  Finish & View Website
+                  {t.templatesPage.playground.step2.btnFinish}
                 </button>
               </div>
             </motion.div>
@@ -757,6 +766,6 @@ export default function TemplatesPage() {
       </AnimatePresence>
 
       <Footer />
-    </main>
+    </main >
   );
 }

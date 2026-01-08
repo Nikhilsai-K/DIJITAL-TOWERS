@@ -6,6 +6,8 @@ import { ArrowRight, Play, Star, Search, Globe, Bookmark, Share, MoreHorizontal 
 import { motion, AnimatePresence } from "framer-motion";
 import { stats } from "@/data/content";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 // iPhone App Icons
 const appIcons = [
@@ -28,6 +30,8 @@ const keyboardRows = [
 ];
 
 export default function Hero() {
+    const { lang } = useLanguage();
+    const t = translations[lang].hero;
     const [animationStage, setAnimationStage] = useState(0);
     const [typedText, setTypedText] = useState("");
     const [activeKey, setActiveKey] = useState("");
@@ -139,18 +143,17 @@ export default function Hero() {
                                 <span className="relative inline-flex rounded-full h-full w-full bg-blue-500"></span>
                             </span>
                             <span className="text-sm font-semibold text-slate-600 tracking-wide">
-                                Premier Property Web Design
+                                {t.badge}
                             </span>
                         </motion.div>
 
-                        {/* Main Heading */}
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.6 }}
                             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight"
                         >
-                            Stunning Websites for{" "}
+                            {t.titlePrefix}{" "}
                             <motion.span
                                 animate={{
                                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -159,7 +162,7 @@ export default function Hero() {
                                 style={{ backgroundSize: "200% 200%" }}
                                 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
                             >
-                                Luxury Properties
+                                {t.titleHighlight}
                             </motion.span>
                         </motion.h1>
 
@@ -170,8 +173,7 @@ export default function Hero() {
                             transition={{ delay: 0.4, duration: 0.6 }}
                             className="text-base sm:text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0"
                         >
-                            We create beautiful, high-converting websites for residential towers,
-                            apartments, and mansions. Help your property stand out and attract more inquiries.
+                            {t.subtitle}
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -187,7 +189,7 @@ export default function Hero() {
                                     whileTap={{ scale: 0.95 }}
                                     className="btn-primary w-full sm:w-auto px-8 py-4 text-base flex items-center justify-center gap-2"
                                 >
-                                    Browse Templates
+                                    {t.ctaPrimary}
                                     <ArrowRight className="w-5 h-5" />
                                 </motion.button>
                             </Link>
@@ -198,7 +200,7 @@ export default function Hero() {
                                     className="btn-secondary w-full sm:w-auto px-8 py-4 flex items-center justify-center gap-2 text-base"
                                 >
                                     <Play className="w-5 h-5" />
-                                    View Our Work
+                                    {t.ctaSecondary}
                                 </motion.button>
                             </Link>
                         </motion.div>
@@ -220,7 +222,7 @@ export default function Hero() {
                                     </div>
                                     <span className="font-bold text-slate-900 text-lg">5.0</span>
                                 </div>
-                                <p className="text-sm text-slate-500 font-medium">100% Client Satisfaction</p>
+                                <p className="text-sm text-slate-500 font-medium">{t.rating}</p>
                             </div>
 
                             <div className="hidden sm:block w-px h-10 bg-slate-200"></div>
@@ -229,11 +231,11 @@ export default function Hero() {
                             <div className="flex gap-8">
                                 <div className="text-center lg:text-left">
                                     <div className="text-2xl font-bold text-slate-900">3</div>
-                                    <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">Projects<br />Completed</div>
+                                    <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">{t.stats.projects}</div>
                                 </div>
                                 <div className="text-center lg:text-left">
                                     <div className="text-2xl font-bold text-slate-900">100%</div>
-                                    <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">Client<br />Satisfaction</div>
+                                    <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">{t.stats.happiness}</div>
                                 </div>
                             </div>
                         </motion.div>
